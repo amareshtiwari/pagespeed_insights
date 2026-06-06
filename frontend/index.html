@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>PageSpeed Insights — Analyze</title>
+  <link rel="stylesheet" href="css/styles.css?v=16">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="brand">
+        <svg class="brand__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        <h1 class="brand__title">PageSpeed Insights</h1>
+      </div>
+      <nav class="app-nav">
+        <a href="cwv.html" class="app-nav__link">CWV Intelligence</a>
+        <a href="dashboard.html" class="app-nav__link">Dashboard</a>
+        <a href="trends.html" class="app-nav__link">Trends</a>
+        <a href="actions.html" class="app-nav__link">Action Items</a>
+        <a href="index.html" class="app-nav__link app-nav__link--active">Analyze</a>
+        <a href="reports.html" class="app-nav__link">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="report-view-header card" id="report-view-header" hidden>
+      <div class="report-view-header__main">
+        <p class="breadcrumb"><a href="reports.html">History</a> / Report <span id="view-report-id">—</span></p>
+        <h2 class="report-view-header__title">Saved report</h2>
+        <p class="report-view-header__url" id="view-report-url"></p>
+        <fieldset class="strategy-toggle report-strategy-toggle" id="report-strategy-toggle">
+          <legend class="sr-only">View report for</legend>
+          <label><input type="radio" name="view-strategy" value="mobile"> Mobile</label>
+          <label><input type="radio" name="view-strategy" value="desktop"> Desktop</label>
+        </fieldset>
+        <p class="report-view-header__meta" id="view-report-meta"></p>
+        <p class="report-view-header__notice" id="view-report-notice" hidden></p>
+      </div>
+      <div class="report-view-header__actions">
+        <a href="reports.html" class="btn-secondary">← Back to History</a>
+        <a href="index.html" class="btn-primary" id="new-analysis-btn">New analysis</a>
+      </div>
+    </section>
+
+    <section class="search-panel card" id="search-panel">
+      <form id="analyze-form" class="search-form">
+        <label class="sr-only" for="url-input">Enter a web page URL</label>
+        <input
+          id="url-input"
+          name="url"
+          type="url"
+          placeholder="Enter a web page URL"
+          required
+          autocomplete="url"
+        >
+        <div class="search-form__options">
+          <fieldset class="strategy-toggle">
+            <legend class="sr-only">Device strategy</legend>
+            <label><input type="radio" name="strategy" value="mobile" checked> Mobile</label>
+            <label><input type="radio" name="strategy" value="desktop"> Desktop</label>
+          </fieldset>
+        </div>
+        <button type="submit" class="btn-primary">Analyze</button>
+      </form>
+      <p id="form-error" class="form-error" hidden></p>
+    </section>
+
+    <div id="loading" class="loading card loading--reserve" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p id="loading-text">Running PageSpeed analysis…</p>
+    </div>
+
+    <section id="results" class="results" hidden>
+      <section class="lighthouse-card card">
+        <div class="lighthouse-card__top">
+          <div class="category-gauges" id="category-gauges"></div>
+        </div>
+
+        <div class="lighthouse-performance">
+          <div class="lighthouse-performance__main">
+            <div class="performance-ring" id="performance-ring">
+              <span id="performance-score-large">—</span>
+            </div>
+            <div>
+              <h2>Performance</h2>
+              <p class="score-banner__url" id="result-url"></p>
+              <p class="report-meta" id="report-meta"></p>
+            </div>
+          </div>
+          <div class="lighthouse-performance__shot">
+            <img id="screenshot" class="screenshot" alt="" hidden>
+          </div>
+        </div>
+
+        <div class="lab-section">
+          <h3 class="lab-section__title">Metrics</h3>
+          <div class="lab-metrics" id="lab-metrics"></div>
+          <div class="lab-legend">
+            <span><span class="lab-legend__icon lab-legend__icon--poor">▲</span> 0–49</span>
+            <span><span class="lab-legend__icon lab-legend__icon--needs">■</span> 50–89</span>
+            <span><span class="lab-legend__icon lab-legend__icon--good">●</span> 90–100</span>
+          </div>
+        </div>
+
+        <footer class="metadata lab-metadata" id="lab-metadata"></footer>
+      </section>
+
+      <section class="cwv-card card" id="cwv-card">
+        <header class="cwv-card__header">
+          <div class="assessment" id="assessment">
+            <span class="assessment__icon" id="assessment-icon" aria-hidden="true"></span>
+            <h2 class="assessment__title">
+              Core Web Vitals Assessment:
+              <strong id="assessment-label">—</strong>
+            </h2>
+          </div>
+          <button type="button" class="link-btn" id="expand-btn">Expand view</button>
+        </header>
+
+        <div class="metrics-grid" id="metrics-grid"></div>
+
+        <footer class="metadata" id="metadata"></footer>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/boot.js?v=1"></script>
+  <script src="js/config.js?v=2"></script>
+  <script src="js/render.js?v=2"></script>
+  <script src="js/app.js?v=5"></script>
+</body>
+</html>

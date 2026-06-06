@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>PageSpeed Insights — Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css?v=21">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="brand">
+        <svg class="brand__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        <h1 class="brand__title">PageSpeed Insights</h1>
+      </div>
+      <nav class="app-nav">
+        <a href="cwv.html" class="app-nav__link">CWV Intelligence</a>
+        <a href="dashboard.html" class="app-nav__link app-nav__link--active">Dashboard</a>
+        <a href="trends.html" class="app-nav__link">Trends</a>
+        <a href="actions.html" class="app-nav__link">Action Items</a>
+        <a href="index.html" class="app-nav__link">Analyze</a>
+        <a href="reports.html" class="app-nav__link">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <p class="hero__eyebrow">Brand intelligence · Live data · Full reports</p>
+      <h2 class="hero__title">Track every brand. Compare scores. Act on trends.</h2>
+      <p class="hero__lead">Add websites with platform and region tags, monitor mobile &amp; desktop performance, and open deep Lighthouse reports. <a href="cwv.html" class="hero__link">View CrUX field data →</a></p>
+    </section>
+
+    <section class="add-website card">
+      <h2>Add Website</h2>
+      <p class="add-website__sub">One URL — mobile and desktop tracked automatically.</p>
+      <form id="add-website-form" class="add-website-form">
+        <div class="add-website-form__row add-website-form__row--4">
+          <label>
+            <span class="field-label">Website URL</span>
+            <input type="url" name="url" placeholder="https://example.com" required>
+          </label>
+          <label>
+            <span class="field-label">Brand name</span>
+            <input type="text" name="name" placeholder="Being Human">
+          </label>
+          <label>
+            <span class="field-label">Platform</span>
+            <select name="platform">
+              <option value="">Select platform</option>
+              <option>Shopify</option>
+              <option>Magento</option>
+              <option>Custom</option>
+              <option>WordPress</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            <span class="field-label">Region</span>
+            <select name="region">
+              <option value="">Select region</option>
+              <option>UAE</option>
+              <option>India</option>
+              <option>Global</option>
+              <option>US</option>
+              <option>EU</option>
+            </select>
+          </label>
+        </div>
+        <div class="add-website-form__row add-website-form__row--options">
+          <label>
+            <span class="field-label">Group</span>
+            <select name="group">
+              <option value="">Select group</option>
+              <option>PM</option>
+              <option>Non-PM</option>
+              <option>Internal</option>
+              <option>Client</option>
+            </select>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="analyzeNow" checked>
+            Run PageSpeed (mobile + desktop) after adding
+          </label>
+        </div>
+        <button type="submit" class="btn-primary">Add Website</button>
+      </form>
+      <p id="add-error" class="form-error" hidden></p>
+      <p id="add-success" class="form-success" hidden></p>
+    </section>
+
+    <section class="dashboard-summary dashboard-summary--reserve" id="dashboard-summary"></section>
+
+    <section class="insights-grid insights-grid--reserve" id="insights-grid"></section>
+
+    <section class="legend card">
+      <h3 class="legend__title">Score legend</h3>
+      <div class="legend__items">
+        <span><i class="legend__dot legend__dot--good"></i> 90–100 Good</span>
+        <span><i class="legend__dot legend__dot--needs"></i> 50–89 Needs improvement</span>
+        <span><i class="legend__dot legend__dot--poor"></i> 0–49 Poor</span>
+        <span><i class="delta delta--up">▲</i> Improved vs last run</span>
+        <span><i class="delta delta--down">▼</i> Regressed vs last run</span>
+      </div>
+    </section>
+
+    <p id="dashboard-error" class="form-error" hidden></p>
+    <p id="dashboard-status" class="dashboard-status" hidden></p>
+
+    <section class="dashboard-brands card" id="dashboard-table-wrap">
+      <div id="dashboard-loading" class="loading-overlay" hidden aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Fetching website data…</p>
+      </div>
+      <div class="dashboard-toolbar dashboard-toolbar--inset">
+        <div>
+          <h2>All Brands</h2>
+          <p class="reports-header__sub">Latest mobile &amp; desktop scores with trend and change vs previous run.</p>
+        </div>
+        <div class="dashboard-toolbar__actions">
+          <button type="button" class="btn-secondary" id="refresh-btn">Refresh</button>
+          <button type="button" class="btn-primary" id="analyze-all-btn">Analyze All</button>
+        </div>
+      </div>
+
+      <div class="filters-bar filters-bar--inset">
+        <div class="filters-bar__fields">
+          <input type="search" id="filter-search" placeholder="Search brand or URL" aria-label="Search brand or URL">
+          <select id="filter-platform" aria-label="Filter by platform"><option value="">All platforms</option></select>
+          <select id="filter-region" aria-label="Filter by region"><option value="">All regions</option></select>
+          <select id="filter-group" aria-label="Filter by group"><option value="">All groups</option></select>
+          <label class="checkbox-label">
+            <input type="checkbox" id="filter-attention"> Needs attention only
+          </label>
+          <button type="button" class="btn-secondary filters-reset-btn" id="filter-reset-btn">Reset filters</button>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="reports-table dashboard-table">
+          <thead>
+            <tr>
+              <th>Brand</th>
+              <th>Mobile</th>
+              <th>Desktop</th>
+              <th>Trend</th>
+              <th>Avg</th>
+              <th>Last checked</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="dashboard-body"></tbody>
+        </table>
+      </div>
+      <p class="reports-empty" id="dashboard-empty" hidden>No websites match your filters.</p>
+    </section>
+  </main>
+
+  <script src="js/boot.js?v=2"></script>
+  <script src="js/config.js?v=3"></script>
+  <script src="js/utils.js?v=4"></script>
+  <script src="js/dashboard.js?v=9"></script>
+</body>
+</html>

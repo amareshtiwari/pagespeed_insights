@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>CWV Intelligence — PageSpeed Insights</title>
+  <link rel="stylesheet" href="css/styles.css?v=25">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="cwv-page">
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="brand">
+        <svg class="brand__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        <h1 class="brand__title">PageSpeed Insights</h1>
+      </div>
+      <nav class="app-nav">
+        <a href="cwv.html" class="app-nav__link app-nav__link--active">CWV Intelligence</a>
+        <a href="dashboard.html" class="app-nav__link">Dashboard</a>
+        <a href="trends.html" class="app-nav__link">Trends</a>
+        <a href="actions.html" class="app-nav__link">Action Items</a>
+        <a href="index.html" class="app-nav__link">Analyze</a>
+        <a href="reports.html" class="app-nav__link">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero card cwv-hero">
+      <p class="hero__eyebrow">Real-user Core Web Vitals · 25-week CrUX trends</p>
+      <h2 class="hero__title">CWV Intelligence Dashboard</h2>
+      <p class="hero__lead" id="cwv-meta-line">Field data from Chrome UX Report — plus live Lighthouse analysis, action items, and full reports.</p>
+    </section>
+
+    <section class="card cwv-controls">
+      <div class="view-tabs" id="view-tabs" role="tablist">
+        <button type="button" class="view-tabs__btn view-tabs__btn--active" data-view="hygiene">Tech Hygiene</button>
+        <button type="button" class="view-tabs__btn" data-view="brand">Single Brand</button>
+        <button type="button" class="view-tabs__btn" data-view="interval">Interval Comparison</button>
+        <button type="button" class="view-tabs__btn" data-view="compare">Comparison</button>
+      </div>
+
+      <div class="filters-bar cwv-filters">
+        <div class="filters-bar__fields">
+          <div class="segmented" id="device-toggle">
+            <span class="segmented__label">Device</span>
+            <button type="button" class="segmented__btn segmented__btn--active" data-device="mobile">Mobile</button>
+            <button type="button" class="segmented__btn" data-device="desktop">Desktop</button>
+          </div>
+          <div class="segmented" id="group-toggle">
+            <span class="segmented__label">Type</span>
+            <button type="button" class="segmented__btn segmented__btn--active" data-group="">All</button>
+            <button type="button" class="segmented__btn" data-group="PM">PM</button>
+            <button type="button" class="segmented__btn" data-group="Non-PM">Non-PM</button>
+          </div>
+          <select id="filter-region" aria-label="Filter by region"><option value="">All regions</option></select>
+          <select id="filter-platform" aria-label="Filter by platform"><option value="">All platforms</option></select>
+          <div id="brand-filter-wrap" class="cwv-brand-filter">
+            <select id="filter-brand" aria-label="Filter by brand"><option value="">All brands</option></select>
+          </div>
+          <div class="segmented" id="metric-toggle">
+            <span class="segmented__label">Metric</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="cwv-loading" class="loading card card--loading loading--reserve">Loading CWV data…</div>
+    <div id="cwv-error" class="card card--error" hidden></div>
+
+    <section id="hygiene-view" class="card cwv-panel cwv-panel--reserve" hidden></section>
+    <section id="brand-view" class="cwv-panel" hidden></section>
+    <section id="interval-view" class="card cwv-panel" hidden></section>
+    <section id="compare-view" class="card cwv-panel" hidden></section>
+
+    <aside class="card cwv-legend">
+      <h3>Legend</h3>
+      <div class="cwv-legend__grid">
+        <div>
+          <h4>Metric status (CrUX cutoffs)</h4>
+          <ul class="cwv-legend__list">
+            <li><span class="cwv-pill cwv-pill--good">Good</span> meets Google's threshold</li>
+            <li><span class="cwv-pill cwv-pill--ok">Needs Imp.</span> between thresholds</li>
+            <li><span class="cwv-pill cwv-pill--poor">Poor</span> exceeds threshold</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Interval deltas</h4>
+          <ul class="cwv-legend__list">
+            <li><span class="cwv-delta cwv-delta--improved">▼ 12%</span> improved vs prior period</li>
+            <li><span class="cwv-delta cwv-delta--regressed">▲ 8%</span> regressed vs prior period</li>
+            <li><span class="cwv-delta cwv-delta--flat">— 0%</span> unchanged (&lt;2%)</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Extras in this app</h4>
+          <ul class="cwv-legend__list">
+            <li>Live Lighthouse runs + full reports</li>
+            <li>Action items with fix suggestions</li>
+            <li>Brand metadata editing + daily cron</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="js/boot.js?v=1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js?v=4"></script>
+  <script src="js/cwv-utils.js?v=1"></script>
+  <script src="js/cwv.js?v=6"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>PageSpeed Insights — Trends</title>
+  <link rel="stylesheet" href="css/styles.css?v=16">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="brand">
+        <svg class="brand__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        <h1 class="brand__title">PageSpeed Insights</h1>
+      </div>
+      <nav class="app-nav">
+        <a href="cwv.html" class="app-nav__link">CWV Intelligence</a>
+        <a href="dashboard.html" class="app-nav__link">Dashboard</a>
+        <a href="trends.html" class="app-nav__link app-nav__link--active">Trends</a>
+        <a href="actions.html" class="app-nav__link">Action Items</a>
+        <a href="index.html" class="app-nav__link">Analyze</a>
+        <a href="reports.html" class="app-nav__link">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="reports-header card">
+      <div>
+        <h2>Performance Trends</h2>
+        <p class="reports-header__sub">Track score improvement week-by-week or month-by-month across all brands.</p>
+      </div>
+    </section>
+
+    <section class="filters-bar card">
+      <div class="period-toggle" id="period-toggle" role="tablist" aria-label="Trend period">
+        <button type="button" class="period-toggle__btn period-toggle__btn--active" data-period="week">Weekly</button>
+        <button type="button" class="period-toggle__btn" data-period="month">Monthly</button>
+        <button type="button" class="period-toggle__btn" data-period="run">Each run</button>
+      </div>
+      <div class="filters-bar__fields">
+        <select id="filter-brand"><option value="">All brands</option></select>
+        <select id="filter-platform"><option value="">All platforms</option></select>
+        <select id="filter-region"><option value="">All regions</option></select>
+        <select id="filter-group"><option value="">All types</option><option value="PM">PM</option><option value="Non-PM">Non-PM</option></select>
+      </div>
+    </section>
+
+    <section class="dashboard-summary dashboard-summary--reserve" id="trends-summary"></section>
+
+    <p id="trends-error" class="form-error" hidden></p>
+
+    <div id="trends-loading" class="loading card" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading trend data…</p>
+    </div>
+
+    <section id="trends-content" hidden>
+      <section class="reports-table-wrap card">
+        <div class="reports-header">
+          <div>
+            <h3 id="trends-table-title">Weekly improvement by brand</h3>
+            <p class="reports-header__sub">Start → end score for the selected period. Green = improved, red = regressed.</p>
+          </div>
+          <button type="button" class="btn-secondary" id="export-trends-btn">Export CSV</button>
+        </div>
+        <div class="table-scroll">
+          <table class="reports-table trends-table">
+            <thead>
+              <tr>
+                <th>Brand</th>
+                <th>Mobile trend</th>
+                <th>Mobile change</th>
+                <th>Desktop trend</th>
+                <th>Desktop change</th>
+                <th>Avg change</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="trends-body"></tbody>
+          </table>
+        </div>
+        <p class="reports-empty" id="trends-empty" hidden>No trend data yet. Add brands and run analyses over time.</p>
+      </section>
+
+      <section class="trends-charts" id="trends-charts"></section>
+    </section>
+  </main>
+
+  <script src="js/boot.js?v=1"></script>
+  <script src="js/config.js?v=3"></script>
+  <script src="js/utils.js?v=4"></script>
+  <script src="js/trends.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+[
+  {
+    "id": 1,
+    "url": "https://example.com/",
+    "strategy": "mobile",
+    "websiteId": 1,
+    "createdAt": "2026-01-20T09:00:00.000Z",
+    "performanceScore": 88,
+    "accessibilityScore": 95,
+    "bestPracticesScore": 92,
+    "seoScore": 91,
+    "cwvPassed": true,
+    "payload": {
+      "url": "https://example.com/",
+      "strategy": "mobile",
+      "capturedAt": "2026-01-20T09:00:00.000Z",
+      "assessment": { "passed": true, "label": "Passed", "reason": null },
+      "categories": { "performance": { "score": 88 } }
+    }
+  },
+  {
+    "id": 2,
+    "url": "https://example.com/",
+    "strategy": "desktop",
+    "websiteId": 1,
+    "createdAt": "2026-01-20T09:01:00.000Z",
+    "performanceScore": 96,
+    "accessibilityScore": 96,
+    "bestPracticesScore": 96,
+    "seoScore": 92,
+    "cwvPassed": true,
+    "payload": {
+      "url": "https://example.com/",
+      "strategy": "desktop",
+      "capturedAt": "2026-01-20T09:01:00.000Z",
+      "assessment": { "passed": true, "label": "Passed", "reason": null },
+      "categories": { "performance": { "score": 96 } }
+    }
+  },
+  {
+    "id": 3,
+    "url": "https://www.wikipedia.org/",
+    "strategy": "mobile",
+    "websiteId": 2,
+    "createdAt": "2026-01-21T11:00:00.000Z",
+    "performanceScore": 72,
+    "accessibilityScore": 88,
+    "bestPracticesScore": 83,
+    "seoScore": 90,
+    "cwvPassed": false,
+    "payload": {
+      "url": "https://www.wikipedia.org/",
+      "strategy": "mobile",
+      "capturedAt": "2026-01-21T11:00:00.000Z",
+      "assessment": { "passed": false, "label": "Failed", "reason": "Sample demo data" },
+      "categories": { "performance": { "score": 72 } }
+    }
+  }
+]

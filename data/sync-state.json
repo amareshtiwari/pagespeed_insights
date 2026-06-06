@@ -1,0 +1,13 @@
+{
+  "dataSeed": {
+    "completed": true,
+    "completedAt": "2026-01-15T10:00:00.000Z",
+    "brandCount": 3
+  },
+  "dailyCron": {
+    "enabled": true,
+    "lastRun": null,
+    "lastRunStatus": null,
+    "lastRunMessage": null
+  }
+}

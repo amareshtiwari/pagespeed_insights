@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>PageSpeed Insights — Brand</title>
+  <link rel="stylesheet" href="css/styles.css?v=22">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="brand">
+        <svg class="brand__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        <h1 class="brand__title">PageSpeed Insights</h1>
+      </div>
+      <nav class="app-nav">
+        <a href="cwv.html" class="app-nav__link">CWV Intelligence</a>
+        <a href="dashboard.html" class="app-nav__link">Dashboard</a>
+        <a href="trends.html" class="app-nav__link">Trends</a>
+        <a href="actions.html" class="app-nav__link">Action Items</a>
+        <a href="index.html" class="app-nav__link">Analyze</a>
+        <a href="reports.html" class="app-nav__link">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="breadcrumb"><a href="dashboard.html">Dashboard</a> / <span id="breadcrumb-name">Brand</span></p>
+
+    <div id="brand-loading" class="loading card" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading brand data…</p>
+    </div>
+
+    <p id="brand-error" class="form-error" hidden></p>
+
+    <section id="brand-content" hidden>
+      <header class="brand-header card">
+        <div class="brand-header__main">
+          <h2 id="brand-name">—</h2>
+          <a id="brand-url" href="#" target="_blank" rel="noopener">—</a>
+          <div id="brand-tags" class="tag-row"></div>
+        </div>
+        <div class="brand-header__actions">
+          <button type="button" class="btn-primary" id="analyze-btn">Analyze mobile + desktop</button>
+          <a href="actions.html" class="btn-secondary" id="brand-actions-link">Action items</a>
+          <a href="dashboard.html" class="btn-secondary">Back to dashboard</a>
+        </div>
+      </header>
+
+      <section class="brand-summary card" id="brand-summary"></section>
+
+      <section class="brand-cwv card" id="brand-cwv-section" hidden>
+        <div class="brand-trends__header">
+          <div>
+            <h3>Real-user CWV (CrUX)</h3>
+            <p class="reports-header__sub">Field data from Chrome UX Report — weekly CrUX snapshots.</p>
+          </div>
+          <div class="brand-cwv__actions">
+            <div class="segmented" id="crux-device-toggle">
+              <button type="button" class="segmented__btn segmented__btn--active" data-device="mobile">Mobile</button>
+              <button type="button" class="segmented__btn" data-device="desktop">Desktop</button>
+            </div>
+            <a class="link-btn" id="brand-cwv-link" href="cwv.html">Open in CWV Intelligence</a>
+          </div>
+        </div>
+        <div id="brand-cwv-grid" class="cwv-metric-grid"></div>
+      </section>
+
+      <section class="brand-scores">
+        <div id="mobile-scores"></div>
+        <div id="desktop-scores"></div>
+      </section>
+
+      <section class="brand-trends card">
+        <div class="brand-trends__header">
+          <div>
+            <h3>Performance trends</h3>
+            <p class="reports-header__sub">See how scores change week-by-week or month-by-month.</p>
+          </div>
+          <div class="period-toggle" id="period-toggle" role="tablist" aria-label="Trend period">
+            <button type="button" class="period-toggle__btn period-toggle__btn--active" data-period="week">Weekly</button>
+            <button type="button" class="period-toggle__btn" data-period="month">Monthly</button>
+            <button type="button" class="period-toggle__btn" data-period="run">Each run</button>
+          </div>
+        </div>
+        <div class="trends-improvement-row">
+          <div id="mobile-improvement"></div>
+          <div id="desktop-improvement"></div>
+        </div>
+        <div class="brand-trends__grid">
+          <div id="mobile-trend"></div>
+          <div id="desktop-trend"></div>
+        </div>
+      </section>
+
+      <section class="brand-edit card">
+        <h3>Brand metadata</h3>
+        <form id="brand-edit-form" class="brand-edit-form">
+          <label>
+            <span class="field-label">Brand name</span>
+            <input type="text" name="name" required>
+          </label>
+          <label>
+            <span class="field-label">Platform</span>
+            <select name="platform">
+              <option value="">Select platform</option>
+              <option>Shopify</option>
+              <option>Magento</option>
+              <option>Custom</option>
+              <option>WordPress</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>
+            <span class="field-label">Region</span>
+            <select name="region">
+              <option value="">Select region</option>
+              <option>UAE</option>
+              <option>India</option>
+              <option>Global</option>
+              <option>US</option>
+              <option>EU</option>
+            </select>
+          </label>
+          <label>
+            <span class="field-label">Group</span>
+            <select name="group">
+              <option value="">Select group</option>
+              <option>PM</option>
+              <option>Non-PM</option>
+              <option>Internal</option>
+              <option>Client</option>
+            </select>
+          </label>
+          <button type="submit" class="btn-primary">Save changes</button>
+        </form>
+        <p id="edit-success" class="form-success" hidden>Saved.</p>
+      </section>
+
+      <section class="reports-table-wrap card">
+        <div class="reports-header">
+          <div>
+            <h3>Run history</h3>
+            <p class="reports-header__sub">All saved PageSpeed runs for this brand.</p>
+          </div>
+          <a class="link-btn" id="history-filter-link" href="reports.html">View in History</a>
+        </div>
+        <div class="table-scroll">
+          <table class="reports-table">
+            <thead>
+              <tr>
+                <th>Strategy</th>
+                <th>Date</th>
+                <th>Perf</th>
+                <th>CWV</th>
+                <th>Change</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="brand-history-body"></tbody>
+          </table>
+        </div>
+        <p class="reports-empty" id="brand-history-empty" hidden>No runs yet. Click Analyze above.</p>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/boot.js?v=1"></script>
+  <script src="js/config.js?v=3"></script>
+  <script src="js/utils.js?v=4"></script>
+  <script src="js/cwv-utils.js?v=1"></script>
+  <script src="js/brand.js?v=4"></script>
+</body>
+</html>

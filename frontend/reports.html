@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>PageSpeed Insights — All Reports</title>
+  <link rel="stylesheet" href="css/styles.css?v=16">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="brand">
+        <svg class="brand__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+        </svg>
+        <h1 class="brand__title">PageSpeed Insights</h1>
+      </div>
+      <nav class="app-nav">
+        <a href="cwv.html" class="app-nav__link">CWV Intelligence</a>
+        <a href="dashboard.html" class="app-nav__link">Dashboard</a>
+        <a href="trends.html" class="app-nav__link">Trends</a>
+        <a href="actions.html" class="app-nav__link">Action Items</a>
+        <a href="index.html" class="app-nav__link">Analyze</a>
+        <a href="reports.html" class="app-nav__link app-nav__link--active">History</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="reports-header card">
+      <div>
+        <h2>Analysis History</h2>
+        <p class="reports-header__sub">Filter by brand, strategy, or platform. Export results for stakeholder reports.</p>
+      </div>
+      <div class="reports-header__actions">
+        <button type="button" class="btn-secondary" id="export-btn">Export CSV</button>
+        <button type="button" class="btn-secondary" id="refresh-btn">Refresh</button>
+      </div>
+    </section>
+
+    <section class="filters-bar card">
+      <div class="filters-bar__fields">
+        <select id="filter-website"><option value="">All brands</option></select>
+        <select id="filter-strategy">
+          <option value="">All strategies</option>
+          <option value="mobile">Mobile</option>
+          <option value="desktop">Desktop</option>
+        </select>
+        <select id="filter-platform"><option value="">All platforms</option></select>
+      </div>
+    </section>
+
+    <p id="reports-error" class="form-error" hidden></p>
+    <p id="reports-count" class="reports-count" hidden></p>
+
+    <div id="reports-loading" class="loading card" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Loading reports…</p>
+    </div>
+
+    <section class="reports-table-wrap card" id="reports-table-wrap" hidden>
+      <div class="table-scroll">
+        <table class="reports-table" id="reports-table">
+          <thead>
+            <tr>
+              <th>Website</th>
+              <th>Strategy</th>
+              <th>Date</th>
+              <th>Perf</th>
+              <th>A11y</th>
+              <th>BP</th>
+              <th>SEO</th>
+              <th>CWV</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="reports-body"></tbody>
+        </table>
+      </div>
+      <p class="reports-empty" id="reports-empty" hidden>No reports match your filters. <a href="dashboard.html">Add a website</a> on the dashboard.</p>
+    </section>
+  </main>
+
+  <script src="js/boot.js?v=1"></script>
+  <script src="js/config.js?v=3"></script>
+  <script src="js/utils.js?v=4"></script>
+  <script src="js/reports.js?v=4"></script>
+</body>
+</html>

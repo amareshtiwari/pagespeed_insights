@@ -1,0 +1,44 @@
+{
+  "name": "pagespeed-insights-portfolio-dashboard",
+  "version": "1.0.0",
+  "description": "Self-hosted Google PageSpeed Insights portfolio dashboard — Core Web Vitals, Lighthouse scores, CrUX monitoring, multi-site web performance tracking (Node.js + Express)",
+  "keywords": [
+    "pagespeed-insights",
+    "core-web-vitals",
+    "lighthouse",
+    "crux",
+    "web-performance",
+    "performance-monitoring",
+    "pagespeed-api",
+    "lcp",
+    "cls",
+    "inp",
+    "seo-tools",
+    "dashboard",
+    "nodejs",
+    "express",
+    "self-hosted",
+    "website-speed",
+    "multi-site-monitoring"
+  ],
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "cron:daily": "node scripts/daily-analyze.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amareshtiwari/pagespeed_insights.git"
+  },
+  "author": "amareshtiwari",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0"
+  }
+}
